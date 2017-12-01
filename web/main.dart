@@ -68,10 +68,10 @@ void disegnaCerchi() {
     context
       ..fillStyle = Theme.busy
       ..strokeStyle = style
-      ..setLineDash([i-i/2,i-i/2])
+      //..setLineDash([i-i/2,i-i/2])
       ..beginPath()
       ..arc(x, y, moltiplicatoreRaggio*i, stepPolare/numeroCerchi*i, stepPolare+stepPolare/numeroCerchi*i, false)
-      ..font = 'italic 8pt Calibri'
+      ..font = 'italic 7pt Calibri'
       ..fillStyle = "black"
       //..lineWidth = 20
       //..fillText(i.toString(), (x +stepPolare/numeroCerchi*i) - moltiplicatoreRaggio*i, (y+moltiplicatoreRaggio*i)) //ETICHETTE
