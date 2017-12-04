@@ -7,6 +7,13 @@ import 'theme.dart';
 
 CanvasElement cntx = document.querySelector("#canvas");
 CanvasRenderingContext2D cnvs = cntx.getContext('2d');
+
+CanvasElement canvas = document.querySelector('#circletest');
+CanvasRenderingContext2D context = canvas.getContext('2d');
+
+CanvasElement canvasOverlay = document.querySelector('#circletest_overlay');
+CanvasRenderingContext2D overlayCTX = canvasOverlay.getContext('2d');
+
 List fileNames = new List();
 String directory_JSON = "data/";
 var url = directory_JSON + "listMonthsJSON.json";
@@ -39,8 +46,7 @@ void main() {
 }
 
 void disegnaCerchi() {
-  CanvasElement canvas = document.querySelector('#circletest');
-  CanvasRenderingContext2D context = canvas.getContext('2d');
+
   double x = canvas.width/2;
   double y = canvas.height/4;
   int minDim = min(canvas.height,canvas.width);//prendere il min tra height e width
@@ -73,12 +79,66 @@ void disegnaCerchi() {
       ..arc(x, y, moltiplicatoreRaggio*i, stepPolare/numeroCerchi*i, stepPolare+stepPolare/numeroCerchi*i, false)
       ..font = 'italic 7pt Calibri'
       ..fillStyle = "black"
-      //..lineWidth = 20
+      ..lineWidth = 2
       //..fillText(i.toString(), (x +stepPolare/numeroCerchi*i) - moltiplicatoreRaggio*i, (y+moltiplicatoreRaggio*i)) //ETICHETTE
       ..fillText(i.toString(), x +4+ moltiplicatoreRaggio*i*cos(stepPolare/numeroCerchi*i),y +2+ moltiplicatoreRaggio*i*sin(stepPolare/numeroCerchi*i)) //ETICHETTE
       ..stroke();
   }
+
+//  canvasOverlay.onMouseMove.listen((e) {
+//    checkMove(e, numeroCerchi);
+//  });
+
 }
+
+//checkMove(MouseEvent e, int numeroCerchi) {
+//  double xMouse = e.offset.x;
+//  double yMouse = e.offset.y;
+//
+//  String backgroundText = "white";
+//  BarraIstogramma barra;
+//  bool exit = false;
+//  for (int i = 0; i < numeroCerchi && !exit; i++) {
+//    /*barra = listBarreIst[i];
+//    if (xMouse >= barra.x &&
+//        xMouse <= barra.x + barra.lineWidth &&
+//        yMouse >= barra.y - barra.height &&
+//        yMouse <= barra.y) {
+//      exit = true;
+//    }*/
+//  }
+//  barra.setColor("red");
+//  //if (exit && !barraCambiata) {
+//    disegnaBarraIstogrammaonMouse(overlayCTX, barra, backgroundText);
+//    //if (barraPrecedente == null || barraPrecedente != barra) {
+//      //barraCambiata = true;
+//      //barraPrecedente = barra;
+//    //}
+//  //} else {
+//    overlayCTX.clearRect(0, 0, canvasOverlay.width, canvasOverlay.height);
+//    //barraCambiata = false;
+//  //}
+//}
+
+//void disegnaBarraIstogrammaonMouse(CanvasRenderingContext2D context, int index, String colorBackgroundText) {
+//  int displ = barra.y + (barra.maxAltezza - barra.height) - barra.maxAltezza; // disegna la barra allineata in basso
+//  int x=barra.x-25;
+//  String fontStyle = "normal italic 30px arial";
+//  // se i numero di plate è meno di 3 numeri
+//
+//  //x-=barra.numPlates.toString().length-1;
+//  //numPlates(context, x-2, displ+1, barra.numPlates, colorBackgroundText);
+//  context
+//    ..beginPath()
+//    ..strokeStyle = barra.color
+//    ..fillStyle = barra.color
+//    ..rect(barra.x+1, displ+1, barra.lineWidth, barra.height)
+//    ..font=fontStyle
+//    ..fillText("#Vetture: "+barra.numPlates.toString(), x, displ - 10)
+//    ..closePath()
+//    ..fill();
+//
+//}
 
 void disegnaBarraIstogramma(CanvasRenderingContext2D context, BarraIstogramma barra) {
 
